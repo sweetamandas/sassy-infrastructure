@@ -1,0 +1,14 @@
+[Unit]
+Description=Journald Cloudwatch Logs agent
+Requires=get-environment.service
+After=network.target get-environment.service
+
+[Service]
+EnvironmentFile=/home/ubuntu/env
+ExecStart=/usr/local/bin/journald-cloudwatch-logs /usr/local/etc/journald-cloudwatch-logs.conf
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target

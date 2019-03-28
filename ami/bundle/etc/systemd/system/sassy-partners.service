@@ -1,0 +1,17 @@
+[Unit]
+Description=SASSY Partners
+Requires=get-environment.service git-pull.service
+After=network.target get-environment.service git-pull.service
+
+[Service]
+User=ubuntu
+Group=ubuntu
+EnvironmentFile=/home/ubuntu/env
+Type=simple
+ExecStart=/usr/bin/node /home/ubuntu/sassy/packages/apps/partners/index.js
+StartLimitIntervalSec=60
+StartLimitBurst=3
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

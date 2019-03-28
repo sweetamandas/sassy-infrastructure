@@ -1,0 +1,12 @@
+[Unit]
+Description=Environment Fetcher
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+Type=oneshot
+ExecStart=/home/ubuntu/scripts/get_env.sh
+
+[Install]
+WantedBy=multi-user.target
