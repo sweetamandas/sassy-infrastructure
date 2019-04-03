@@ -34,7 +34,7 @@ data "aws_ssm_parameter" "mysql_password" {
 
 # Get latest production snapshot
 data "aws_db_snapshot" "latest_prod_snapshot" {
-  db_instance_identifier = "sassy-db-1"
+  db_instance_identifier = "sassy-production-mysql"
   most_recent            = true
 }
 
