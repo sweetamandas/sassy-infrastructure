@@ -150,7 +150,7 @@ resource "aws_sns_topic_subscription" "email_receipt" {
 # themselves.
 resource "aws_ses_receipt_rule" "store" {
   name          = "sassy-${var.environment}-store-and-notify"
-  recipients    = ["${var.environment}.sweetamandas.com"]
+  recipients    = ["${local.fqdn}"]
   rule_set_name = "default-rule-set"
   enabled       = true
   tls_policy    = "Require"

@@ -133,6 +133,17 @@ resource "aws_security_group" "mysql" {
     security_groups = ["${aws_security_group.server.id}"]
   }
 
+  # Allow ingress from Tallmadge office. This is necessary so WorldShip on
+  # shipping PC can fetch orders, etc form database. In the future it might
+  # be better to setup a VPN, or something for this.
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["173.89.66.159/32"]
+    description = "Tallmadge office"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

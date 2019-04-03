@@ -30,7 +30,7 @@ resource "aws_elasticache_parameter_group" "default" {
 }
 
 resource "aws_elasticache_replication_group" "replication_group" {
-  replication_group_id          = "sassy-${var.environment}-redis"
+  replication_group_id          = "sassy-${var.environment}"
   replication_group_description = "Redis replication group for SASSY ${var.environment}"
 
   engine               = "redis"

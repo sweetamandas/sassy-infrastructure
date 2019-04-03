@@ -24,4 +24,4 @@ multi_az = true
 
 skip_final_snapshot = false
 
-backup_retention_period = "30"
+backup_retention_period = "21"

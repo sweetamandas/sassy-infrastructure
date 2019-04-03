@@ -20,4 +20,4 @@ node_type = "cache.t2.micro"
 
 automatic_failover_enabled = "1"
 
-number_cache_clusters = "1"
+number_cache_clusters = "2"
