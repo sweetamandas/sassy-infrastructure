@@ -6,15 +6,15 @@ locals {
 
 # Import TLS cert for machine API from SSM
 data "aws_ssm_parameter" "key_pem" {
-  name = "/tls-certs/sassy.sweetamandas.com/key"
+  name = "/tls-certs/${local.machine_api_fqdn}/key"
 }
 
 data "aws_ssm_parameter" "cert_pem" {
-  name = "/tls-certs/sassy.sweetamandas.com/cert"
+  name = "/tls-certs/${local.machine_api_fqdn}/cert"
 }
 
 data "aws_ssm_parameter" "ca_pem" {
-  name = "/tls-certs/sassy.sweetamandas.com/ca"
+  name = "/tls-certs/${local.machine_api_fqdn}/ca"
 }
 
 resource "aws_acm_certificate" "machine_api_cert" {
