@@ -79,7 +79,7 @@ module "db" {
   major_engine_version = "5.7"
 
   # Initial snapshot
-  snapshot_identifier = "${data.aws_db_snapshot.latest_prod_snapshot.id}"
+  snapshot_identifier = "${var.use_latest_production_snapshot ? "${data.aws_db_snapshot.latest_prod_snapshot.id}" : "${var.snapshot_identifier}"}"
 
   # Database Deletion Protection
   deletion_protection = "${var.deletion_protection}"

@@ -25,3 +25,5 @@ multi_az = false
 skip_final_snapshot = true
 
 backup_retention_period = "0"
+
+use_latest_production_snapshot = true

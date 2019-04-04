@@ -25,3 +25,13 @@ variable "skip_final_snapshot" {
 variable "backup_retention_period" {
   description = "Number of days to retain backups for. 0 to disable backups"
 }
+
+variable "snapshot_identifier" {
+  description = "Name of snapshot to use when creating the database"
+  default     = ""
+}
+
+variable "use_latest_production_snapshot" {
+  description = "Set to true if database should be created using the latest production snapshot. This overrides the snapshot_identifier variable"
+  default     = false
+}

@@ -25,3 +25,5 @@ multi_az = true
 skip_final_snapshot = false
 
 backup_retention_period = "21"
+
+snapshot_identifier = "sassy-db-1-final-snapshot"
