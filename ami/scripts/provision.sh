@@ -37,7 +37,6 @@ mkdir /home/ubuntu/sassy
 cd /home/ubuntu/sassy
 git init
 git remote add origin git@github.com:sweetamandas/sassy.git
-git checkout -b refactor
 
 mkdir /home/ubuntu/quickbooks-export
 cd /home/ubuntu/quickbooks-export

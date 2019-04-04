@@ -29,7 +29,7 @@ set -o errexit
 
 # Pull latest app versions down from github
 cd /home/ubuntu/sassy
-git-with-ssm-key pull origin refactor
+git-with-ssm-key pull origin master
 yarn install
 
 cd /home/ubuntu/quickbooks-export
