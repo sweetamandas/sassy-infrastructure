@@ -18,6 +18,16 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
+data "terraform_remote_state" "sns_alerts" {
+  backend = "s3"
+
+  config {
+    bucket = "sweetamandas-terraform-state"
+    key    = "sassy/global/sns-alerts/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 resource "aws_elasticache_subnet_group" "subnet_group" {
   name       = "sassy-${var.environment}-redis"
   subnet_ids = ["${data.terraform_remote_state.vpc.public_subnets}"]
@@ -47,6 +57,8 @@ resource "aws_elasticache_replication_group" "replication_group" {
 
   maintenance_window       = "tue:08:00-tue:09:30"
   snapshot_retention_limit = "0"
+
+  notification_topic_arn = "${var.enable_alerts ? data.terraform_remote_state.sns_alerts.system_alert_topic_arn : ""}"
 
   tags = {
     Application = "sassy"

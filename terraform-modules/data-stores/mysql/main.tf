@@ -18,6 +18,16 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
+data "terraform_remote_state" "sns_alerts" {
+  backend = "s3"
+
+  config {
+    bucket = "sweetamandas-terraform-state"
+    key    = "sassy/global/sns-alerts/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 data "terraform_remote_state" "security" {
   backend = "s3"
 
@@ -124,4 +134,28 @@ resource "aws_ssm_parameter" "mysql_username" {
     Application = "sassy"
     Environment = "${var.environment}"
   }
+}
+
+# Setup event subscription
+resource "aws_db_event_subscription" "default" {
+  count = "${var.enable_alerts ? 1 : 0}"
+
+  name      = "sassy-${var.environment}-mysql"
+  sns_topic = "${data.terraform_remote_state.sns_alerts.system_alert_topic_arn}"
+
+  source_type = "db-instance"
+  source_ids  = ["${module.db.this_db_instance_id}"]
+
+  event_categories = [
+    "availability",
+    "deletion",
+    "failover",
+    "failure",
+    "low storage",
+    "maintenance",
+    "notification",
+    "read replica",
+    "recovery",
+    "restoration",
+  ]
 }

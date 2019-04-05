@@ -17,3 +17,8 @@ variable "automatic_failover_enabled" {
 variable "number_cache_clusters" {
   description = "Number of cache clusters. Must be 2 or more if auto failover is enabled"
 }
+
+variable "enable_alerts" {
+  description = "Set to true if database alerts should be sent to SNS"
+  default     = false
+}

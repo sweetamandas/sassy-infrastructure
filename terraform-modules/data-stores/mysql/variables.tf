@@ -35,3 +35,8 @@ variable "use_latest_production_snapshot" {
   description = "Set to true if database should be created using the latest production snapshot. This overrides the snapshot_identifier variable"
   default     = false
 }
+
+variable "enable_alerts" {
+  description = "Set to true if database alerts should be sent to SNS"
+  default     = false
+}
