@@ -5,8 +5,8 @@ resource "aws_lb" "alb" {
   security_groups    = ["${data.terraform_remote_state.vpc.alb_security_group_id}"]
   subnets            = ["${data.terraform_remote_state.vpc.public_subnets}"]
 
-  # Set connection timeout to 5 minutes
-  idle_timeout = 300
+  # Set connection timeout to 6 minutes
+  idle_timeout = 360
 
   tags = {
     Environment = "${var.environment}"
