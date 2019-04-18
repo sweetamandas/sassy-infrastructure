@@ -7,7 +7,7 @@ module "asg" {
   # Launch configuration
   lc_name = "sassy-${var.environment}-lc"
 
-  image_id             = "ami-0adbb3c67c5a4804b"
+  image_id             = "ami-0cde660d111c736a6"
   instance_type        = "${var.instance_type}"
   security_groups      = ["${data.terraform_remote_state.vpc.server_security_group_id}"]
   iam_instance_profile = "${aws_iam_instance_profile.profile.name}"
