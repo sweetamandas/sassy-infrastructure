@@ -144,6 +144,14 @@ resource "aws_security_group" "mysql" {
     description = "Tallmadge office"
   }
 
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["${var.mysql_sg_ingress_cidr_blocks}"]
+    description = "Additional ingress CIDR blocks"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

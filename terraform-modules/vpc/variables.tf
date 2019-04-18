@@ -10,3 +10,8 @@ variable "max_az_count" {
   description = "Maximum number of availability zones that subnets will be created in"
   default     = 3
 }
+
+variable "mysql_sg_ingress_cidr_blocks" {
+  description = "Additional CIDR blocks that can access MySQL instances"
+  default     = []
+}
