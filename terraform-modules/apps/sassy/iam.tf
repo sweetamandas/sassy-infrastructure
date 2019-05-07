@@ -234,3 +234,31 @@ resource "aws_iam_role_policy" "ses_sqs" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "sns_send" {
+  name = "AllowSNSSendText"
+  role = "${aws_iam_role.role.id}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sns:Publish"
+      ],
+      "Resource": ["*"],
+      "Condition":{
+        "StringLike": {
+          "sns:Endpoint": "+1*"
+        },
+        "StringEquals":{
+          "sns:Protocol": "SMS"
+        }
+      }
+    }
+  ]
+}
+EOF
+}
