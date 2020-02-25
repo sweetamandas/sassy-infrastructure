@@ -140,7 +140,7 @@ resource "aws_security_group" "mysql" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["173.89.66.159/32"]
+    cidr_blocks = ["173.89.93.33/32"]
     description = "Tallmadge office"
   }
 
